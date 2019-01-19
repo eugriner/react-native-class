@@ -1,18 +1,28 @@
 import React, {Component} from 'react';
 import {StyleSheet, View} from 'react-native';
+import ToDoList from './components/to-do-list';
 
-type Props = {};
-export default class App extends Component<Props> {
+export default class App extends Component {
   constructor() {
     super();
     this.state = {
-      todos: [],
+      toDos: [
+        {
+          text: 'estilar app'
+        },
+        {
+          text: 'tirar warnings'
+        },
+        {
+          text: 'build app'
+        },
+      ],
     }
   }
   render() {
     return (
       <View style={styles.container}>
-    
+        <ToDoList toDoList={this.state.toDos} />    
       </View>
     );
   }
