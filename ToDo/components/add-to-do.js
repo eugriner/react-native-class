@@ -1,5 +1,6 @@
 import React from 'react';
-import { View, TextInput, Button } from 'react-native';
+import { View, TextInput, Button, StyleSheet } from 'react-native';
+
 
 class AddToDo extends React.Component {
   constructor() {
@@ -26,19 +27,42 @@ class AddToDo extends React.Component {
   
   render() {
     return (
-      <View>
-        <TextInput 
+      <View style={styles.container}>
+        <TextInput style={styles.input}
           value={this.state.text}
           onChangeText={text => this.onTextInput(text)}
         />
-        <Button 
+        <Button style={styles.button}
           onPress={
             () => this.addToDo()
           }
           title="add" />
       </View>
-      )
-    }
+      
+    )
   }
+}
+
+const styles = StyleSheet.create({
+  container: {
+    width:'100%',
+    padding: 15,
+    backgroundColor: 'lightgray',
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  input: {
+    flex: 1,
+    padding: 5,
+    backgroundColor: 'white',
+    borderRadius: 5,
+    marginRight: 15,
+  },
+  button: {
+    flexShrink: 0,
+    borderRadius: 5,
+    padding: 5,
+  },
+})
   
-  export default AddToDo;
+export default AddToDo;
