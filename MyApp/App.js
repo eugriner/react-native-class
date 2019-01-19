@@ -17,9 +17,23 @@ const instructions = Platform.select({
 });
 
 class Hello extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+      name: 'Rodrigo',
+    }
+
+    setTimeout(() => {
+      this.setState({
+        name: 'Fabio'
+      })
+    }, 5000)
+  }
+
   render() {
     return (
-      <Text style={styles.welcome}>Welcome to this React Native!</Text>
+      <Text style={styles.welcome}>Welcome to this React Native {this.state.name}!</Text>
     )
   }
 }
