@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {StyleSheet, View} from 'react-native';
 import ToDoList from './components/to-do-list';
+import AddToDo from './components/add-to-do';
 
 export default class App extends Component {
   constructor() {
@@ -19,10 +20,18 @@ export default class App extends Component {
       ],
     }
   }
+
+  addToDo(text) {
+    this.setState({
+      toDos: [ ...this.state.toDos, {text} ]
+    })
+  }
+
   render() {
     return (
       <View style={styles.container}>
-        <ToDoList toDoList={this.state.toDos} />    
+        <AddToDo add={ (text) => this.addToDo(text) }/>
+        <ToDoList toDoList={this.state.toDos} />
       </View>
     );
   }
