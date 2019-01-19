@@ -19,31 +19,32 @@ const instructions = Platform.select({
 class Hello extends Component {
   constructor() {
     super();
-
-    this.state = {
-      name: 'Rodrigo',
-    }
-
-    setTimeout(() => {
-      this.setState({
-        name: 'Fabio'
-      })
-    }, 5000)
+    
   }
-
   render() {
     return (
-      <Text style={styles.welcome}>Welcome to this React Native {this.state.name}!</Text>
+      <Text style={styles.welcome}>Welcome {this.props.name}!</Text>
     )
   }
 }
 
 type Props = {};
 export default class App extends Component<Props> {
+  constructor() {
+    super();
+    this.state = {
+      name: 'Rodrigo',
+    }
+    setTimeout(() => {
+      this.setState({
+        name: 'Fabio'
+      })
+    }, 5000)
+  }
   render() {
     return (
       <View style={styles.container}>
-      <Hello />
+      <Hello name={this.state.name}/>
         <Text style={styles.instructions}>To get started, edit App.js</Text>
         <Text style={styles.instructions}>{instructions}</Text>
       </View>
