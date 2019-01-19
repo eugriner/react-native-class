@@ -3,6 +3,12 @@ import {StyleSheet, View} from 'react-native';
 
 type Props = {};
 export default class App extends Component<Props> {
+  constructor() {
+    super();
+    this.state = {
+      todos: [],
+    }
+  }
   render() {
     return (
       <View style={styles.container}>
