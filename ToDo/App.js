@@ -1,13 +1,15 @@
 import React, {Component} from 'react';
-import {StyleSheet, View, ScrollView, PermissionsAndroid} from 'react-native';
+import { StyleSheet, View, ScrollView, PermissionsAndroid } from 'react-native';
 import { createStackNavigator, createAppContainer } from "react-navigation";
+
+import Constants from './constants'
 
 import ToDoList from './components/to-do-list';
 import AddToDo from './components/add-to-do';
 
 import ToDoDetails from './screens/to-do-details';
 
-import {defaultNavigationOptions} from "./res/styles"
+import { defaultNavigationOptions } from "./res/styles"
 
 
 
@@ -104,12 +106,28 @@ class Home extends Component {
     }
   }
 
-  setToDoLocation(id, coords) {
-    const { toDos } = this.state;
-    toDos.find(toDo => toDo.id === id).location = coords;
-    this.setState({
-      toDos: toDos
-    });
+  async setToDoLocation(id, coords) {
+    const { latitude, longitude } = coords;
+    const API_KEY = Constants.API_KEY;
+    try {
+      const response = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=${API_KEY}`);
+
+      const data = await response.json();
+
+      if (!data.error_message) {
+        const addrres = data.results[0].formatted_address;
+        const { toDos } = this.state;
+        toDos.find(toDos => toDos.id === id).location = addrres;
+        this.setState({
+          toDos
+        })
+      } else {
+        throw JSON.stringify(data);
+      }
+      
+    } catch(e) {
+      console.warn(e);
+    }
   }
 
   addToDo(text) {

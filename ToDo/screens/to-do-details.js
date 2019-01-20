@@ -16,6 +16,9 @@ class ToDoDetails extends Component {
       <Text>
         {toDo.text}
       </Text>
+      <Text>
+        Location: {toDo.location}
+      </Text>
     </View>
     )
   }
