@@ -10,7 +10,7 @@ class ToDoDetails extends Component {
 
   render() {
     const toDo = this.props.navigation.getParam('toDo');
-    console.warn(toDo);
+    // console.warn(toDo);
     return (
     <View style={styles.container}>
       <Text>

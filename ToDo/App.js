@@ -95,10 +95,11 @@ class Home extends Component {
         }
       )
       this.setState({
-        geolocationPermissionGranted: isGranted,
+        geolocationPermissionGranted: isGranted === 'granted',
       })
     } catch (err) {
-      console.error("requestMapsPermission: Something went wrong!")
+      console.warn("requestMapsPermission: Something went wrong!");
+      console.warn(err);
       return;
     }
   }

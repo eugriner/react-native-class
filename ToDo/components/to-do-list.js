@@ -8,6 +8,7 @@ class ToDoList extends React.Component {
       <View style={styles.container}>
         {this.props.toDoList.map((toDo) => (
           <ToDo
+            key={toDo.id}
             navigation={this.props.navigation}
             toDo={toDo}
           />
