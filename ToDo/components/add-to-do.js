@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
   container: {
     width:'100%',
     padding: 15,
-    backgroundColor: 'lightgray',
+    backgroundColor: '#1564bf',
     flexDirection: 'row',
     alignItems: 'center',
   },
@@ -64,6 +64,7 @@ const styles = StyleSheet.create({
     borderRadius:10,
     borderWidth: 1,
     padding: 5,
+    backgroundColor: '#9be7ff',
   },
 })
   

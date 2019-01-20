@@ -1,16 +1,24 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, TouchableNativeFeedback } from 'react-native';
+
 class ToDo extends React.Component {
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.text}>
-          {this.props.text}
-        </Text>
-      </View>
+      <TouchableNativeFeedback
+        onPress={ () => {
+          this.props.navigation.navigate('ToDoDetails', {text: this.props.text})
+        }}
+      >
+        <View style={styles.container}>
+          <Text style={styles.text}>
+            {this.props.text}
+          </Text>
+        </View>
+      </TouchableNativeFeedback>
     )
   }
 }
+
 const styles = StyleSheet.create({
   container: {
     width:'100%',

@@ -7,7 +7,10 @@ class ToDoList extends React.Component {
     return (
       <View style={styles.container}>
         {this.props.toDoList.map((toDo) => (
-          <ToDo text={toDo.text} />
+          <ToDo
+            navigation={this.props.navigation}
+            text={toDo.text}
+          />
         ))}
       </View>
     )

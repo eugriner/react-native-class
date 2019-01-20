@@ -1,12 +1,55 @@
 import React, {Component} from 'react';
-import {StyleSheet, View, ScrollView} from 'react-native';
+import {StyleSheet, View, Text, ScrollView} from 'react-native';
 import ToDoList from './components/to-do-list';
 import AddToDo from './components/add-to-do';
 import { createStackNavigator, createAppContainer } from "react-navigation";
 
+const defaultNavigationOptions = {
+  headerStyle: {
+    backgroundColor: '#1564bf',
+  },
+  headerTintColor: 'white',
+  headerTitleStyle: {
+    fontWeight: 'bold',
+    color: 'white',
+  }
+}
+
+class ToDoDetails extends Component {
+  static navigationOptions = {
+    ...defaultNavigationOptions,
+    title: 'Details',
+  };
+  
+  render() {
+    return (
+      <View>
+        <Text>
+          {this.props.navigation.getParam('text')}
+        </Text>
+      </View>
+    )
+  }
+}
+
 class Home extends Component {
-  constructor() {
-    super();
+
+  static navigationOptions = {
+    ...defaultNavigationOptions,
+    title: 'To-do',
+    header: null,
+  };
+
+
+  constructor(props) {
+    super(props);
+    
+    // setTimeout( () => {
+    //   this.props.navigation.navigate('ToDoDetails', {
+    //     text: 'sho sho sho show',
+    //   });
+    // }, 3000);
+    
     this.state = {
       toDos: [
         {
@@ -59,9 +102,12 @@ class Home extends Component {
   render() {
     return (
       <View style={styles.container}>
+        <AddToDo add={ (text) => this.addToDo(text) }/>
         <ScrollView contentContainerStyle={styles.scrollView}>
-          <AddToDo add={ (text) => this.addToDo(text) }/>
-          <ToDoList toDoList={this.state.toDos} />
+          <ToDoList
+            navigation={this.props.navigation}
+            toDoList={this.state.toDos}
+          />
         </ScrollView>
       </View>
     );
@@ -81,9 +127,9 @@ const styles = StyleSheet.create({
 });
 
 const AppNavigator = createStackNavigator({
-  Home: {
-    screen: Home
-  }
+  Home: { screen: Home },
+  ToDoDetails: { screen: ToDoDetails },
 });
+
 
 export default createAppContainer(AppNavigator);
