@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { View, Text } from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
 import {defaultNavigationOptions} from "../res/styles"
 
 class ToDoDetails extends Component {
@@ -9,14 +9,32 @@ class ToDoDetails extends Component {
   };
 
   render() {
+    const toDo = this.props.navigation.getParam('toDo');
+    console.warn(toDo);
     return (
-    <View>
+    <View style={styles.container}>
       <Text>
-      {this.props.navigation.getParam('text')}
+        {toDo.text}
       </Text>
     </View>
     )
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'flex-start',
+    alignItems: 'flex-start',
+    padding: 15,
+    borderRadius: 5,
+    margin: 15,
+    backgroundColor: 'white',
+    shadowColor: 'black',
+    shadowOffset: { width: 8, height: 8 },
+    shadowRadius: 5,
+    elevation: 5,
+  },
+});
 
 export default ToDoDetails;

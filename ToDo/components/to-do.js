@@ -6,12 +6,12 @@ class ToDo extends React.Component {
     return (
       <TouchableNativeFeedback
         onPress={ () => {
-          this.props.navigation.navigate('ToDoDetails', {text: this.props.text})
+          this.props.navigation.navigate('ToDoDetails', {toDo: this.props.toDo})
         }}
       >
         <View style={styles.container}>
           <Text style={styles.text}>
-            {this.props.text}
+            {this.props.toDo.text}
           </Text>
         </View>
       </TouchableNativeFeedback>

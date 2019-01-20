@@ -98,8 +98,17 @@ class Home extends Component {
         geolocationPermissionGranted: isGranted,
       })
     } catch (err) {
+      console.error("requestMapsPermission: Something went wrong!")
       return;
     }
+  }
+
+  setToDoLocation(id, coords) {
+    const { toDos } = this.state;
+    toDos.find(toDo => toDo.id === id).location = coords;
+    this.setState({
+      toDos: toDos
+    });
   }
 
   addToDo(text) {
@@ -110,6 +119,14 @@ class Home extends Component {
       idCount: id,
     },// () => console.warn(id)
     );
+
+    if (this.state.geolocationPermissionGranted) {
+      navigator.geolocation.getCurrentPosition(
+        (pos) => {this.setToDoLocation(id, pos.coords)}, //callback
+        null, //erro
+        {enableHighAccuracy: true} //type of accuracy
+      )
+    }
   }
 
   render() {
