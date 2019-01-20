@@ -1,0 +1,35 @@
+# Install Node Version Manager
+https://github.com/creationix/nvm#installation
+source ~/.bashrc
+# Check if nvm has been install
+command -v nvm
+# nvm
+
+# Install npm
+nvm install stable
+# Install react native and dependencies 
+npm install -g react-native-cli
+
+# Other tools for making life easier
+https://facebook.github.io/react-native/docs/getting-started
+
+# Create new app
+react-native init MyApp
+
+# Run app inside emulator
+react-native run-android
+
+
+# To study flex
+https://css-tricks.com/snippets/css/a-guide-to-flexbox/
+http://flexboxfroggy.com/
+
+# Navigation
+https://reactnavigation.org
+
+# Style pallet
+https://material.io/tools/color/#!/
+
+
+
+
