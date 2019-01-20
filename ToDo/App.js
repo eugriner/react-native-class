@@ -1,36 +1,15 @@
 import React, {Component} from 'react';
-import {StyleSheet, View, Text, ScrollView} from 'react-native';
-import ToDoList from './components/to-do-list';
-import AddToDo from './components/add-to-do';
+import {StyleSheet, View, ScrollView} from 'react-native';
 import { createStackNavigator, createAppContainer } from "react-navigation";
 
-const defaultNavigationOptions = {
-  headerStyle: {
-    backgroundColor: '#1564bf',
-  },
-  headerTintColor: 'white',
-  headerTitleStyle: {
-    fontWeight: 'bold',
-    color: 'white',
-  }
-}
+import ToDoList from './components/to-do-list';
+import AddToDo from './components/add-to-do';
 
-class ToDoDetails extends Component {
-  static navigationOptions = {
-    ...defaultNavigationOptions,
-    title: 'Details',
-  };
-  
-  render() {
-    return (
-      <View>
-        <Text>
-          {this.props.navigation.getParam('text')}
-        </Text>
-      </View>
-    )
-  }
-}
+import ToDoDetails from './screens/to-do-details';
+
+import {defaultNavigationOptions} from "./res/styles"
+
+
 
 class Home extends Component {
 
@@ -53,39 +32,51 @@ class Home extends Component {
     this.state = {
       toDos: [
         {
+          id:1,
           text: 'estilar app'
         },
         {
+          id:2,
           text: 'tirar warnings'
         },
         {
+          id:3,
           text: 'build app'
         },
         {
+          id:4,
           text: '1'
         },
         {
+          id:5,
           text: '2'
         },
         {
+          id:6,
           text: '3'
         },
         {
+          id:7,
           text: '4'
         },
         {
+          id:8,
           text: '5'
         },
         {
+          id:9,
           text: '6'
         },
         {
+          id:10,
           text: '7'
         },
         {
+          id:11,
           text: '8'
         },
         {
+          id:12,
           text: 'LAST'
         },
       ],
