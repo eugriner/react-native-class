@@ -2,8 +2,9 @@ import React, {Component} from 'react';
 import {StyleSheet, View, ScrollView} from 'react-native';
 import ToDoList from './components/to-do-list';
 import AddToDo from './components/add-to-do';
+import { createStackNavigator, createAppContainer } from "react-navigation";
 
-export default class App extends Component {
+class Home extends Component {
   constructor() {
     super();
     this.state = {
@@ -58,8 +59,8 @@ export default class App extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <AddToDo add={ (text) => this.addToDo(text) }/>
         <ScrollView contentContainerStyle={styles.scrollView}>
+          <AddToDo add={ (text) => this.addToDo(text) }/>
           <ToDoList toDoList={this.state.toDos} />
         </ScrollView>
       </View>
@@ -78,3 +79,11 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
   },
 });
+
+const AppNavigator = createStackNavigator({
+  Home: {
+    screen: Home
+  }
+});
+
+export default createAppContainer(AppNavigator);
