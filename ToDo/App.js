@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {StyleSheet, View, ScrollView} from 'react-native';
+import {StyleSheet, View, ScrollView, PermissionsAndroid} from 'react-native';
 import { createStackNavigator, createAppContainer } from "react-navigation";
 
 import ToDoList from './components/to-do-list';
@@ -80,14 +80,36 @@ class Home extends Component {
           text: 'LAST'
         },
       ],
+      idCount: 13,
+    }
+    this.requestMapsPermission();
+  }
+
+  async requestMapsPermission() {
+    try {
+      const isGranted = await PermissionsAndroid.request(
+        PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
+        {
+          'title': 'To-do app location access',
+          'message': 'We need your location to know where you are!',
+        }
+      )
+      this.setState({
+        geolocationPermissionGranted: isGranted,
+      })
+    } catch (err) {
+      return;
     }
   }
 
   addToDo(text) {
+    const id = this.state.idCount + 1;
     this.setState({
     //  toDos: [ ...this.state.toDos, {text} ]
-    toDos: [{text}].concat(this.state.toDos)
-    })
+      toDos: [{id, text}].concat(this.state.toDos),
+      idCount: id,
+    },// () => console.warn(id)
+    );
   }
 
   render() {
