@@ -1,11 +1,11 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import ToDo from './to-do';
 
 class ToDoList extends React.Component {
   render() {
     return (
-      <View>
+      <View style={styles.container}>
         {this.props.toDoList.map((toDo) => (
           <ToDo text={toDo.text} />
         ))}
@@ -13,5 +13,12 @@ class ToDoList extends React.Component {
     )
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    width:'100%',
+    padding: 15,
+  }
+})
 
 export default ToDoList;

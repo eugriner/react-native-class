@@ -33,6 +33,7 @@ class AddToDo extends React.Component {
           onChangeText={text => this.onTextInput(text)}
         />
         <Button style={styles.button}
+          disabled={!this.state.text}
           onPress={
             () => this.addToDo()
           }
@@ -60,7 +61,8 @@ const styles = StyleSheet.create({
   },
   button: {
     flexShrink: 0,
-    borderRadius: 5,
+    borderRadius:10,
+    borderWidth: 1,
     padding: 5,
   },
 })
